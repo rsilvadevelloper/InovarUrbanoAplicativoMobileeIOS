@@ -2,14 +2,42 @@ import React from 'react';
 import { View, Text, Button, StyleSheet } from 'react-native';
 import { WebView } from 'react-native-webview';
 
+import React from "react";
+import { View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import { WebView } from "react-native-webview";
+import { useState } from "react";
+
 export default function CheckoutScreen() {
+  const [paymentUrl, setPaymentUrl] = useState(null);
+
+  const handlePayment = (method) => {
+    if (method === "pagseguro") {
+      setPaymentUrl("https://www.pagseguro.uol.com.br");
+    } else if (method === "pix") {
+      setPaymentUrl("https://www.pixpagamento.com.br"); // Substitua pela URL do seu provedor de PIX
+    } else if (method === "paypal") {
+      setPaymentUrl("https://www.paypal.com/checkout");
+    }
+  };
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Pagamento</Text>
-      <WebView
-        source={{ uri: 'https://www.pagseguro.uol.com.br' }} // Integre aqui com a URL da sua solução de pagamento.
-        style={{ flex: 1 }}
-      />
+      {paymentUrl ? (
+        <WebView source={{ uri: paymentUrl }} style={{ flex: 1 }} />
+      ) : (
+        <View style={styles.paymentOptions}>
+          <Text style={styles.title}>Escolha o método de pagamento:</Text>
+          <TouchableOpacity style={styles.button} onPress={() => handlePayment("pagseguro")}>
+            <Text style={styles.buttonText}>Pagar com PagSeguro</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button} onPress={() => handlePayment("pix")}>
+            <Text style={styles.buttonText}>Pagar com PIX</Text>
+          </TouchableOpacity>
+          <TouchableOpacity style={styles.button} onPress={() => handlePayment("paypal")}>
+            <Text style={styles.buttonText}>Pagar com PayPal</Text>
+          </TouchableOpacity>
+        </View>
+      )}
     </View>
   );
 }
@@ -17,11 +45,29 @@ export default function CheckoutScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 10,
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "#fff",
+  },
+  paymentOptions: {
+    alignItems: "center",
   },
   title: {
-    fontSize: 18,
-    fontWeight: 'bold',
-    marginBottom: 10,
+    fontSize: 22,
+    fontWeight: "bold",
+    marginBottom: 20,
+  },
+  button: {
+    backgroundColor: "#000",
+    padding: 15,
+    borderRadius: 8,
+    marginVertical: 10,
+    width: 200,
+    alignItems: "center",
+  },
+  buttonText: {
+    color: "#fff",
+    fontSize: 16,
+    fontWeight: "bold",
   },
 });
