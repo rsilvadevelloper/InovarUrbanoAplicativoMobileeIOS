@@ -8,6 +8,18 @@ export default function App() {
     </View>
   );
 }
+import React from "react";
+import { StatusBar } from "react-native";
+import StackNavigator from "./src/navigation/StackNavigator";
+
+export default function App() {
+  return (
+    <>
+      <StatusBar barStyle="light-content" backgroundColor="#000" />
+      <StackNavigator />
+    </>
+  );
+}
 
 const styles = StyleSheet.create({
   container: {
