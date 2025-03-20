@@ -8,10 +8,14 @@
     "dev": "concurrently \"npm run android\" \"npm run ios\""
   },
   "dependencies": {
-    "react": "17.0.2",
-    "react-native": "0.65.0"
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0",
+    "react-native": "^0.78.1"
   },
   "devDependencies": {
-    "concurrently": "^6.2.0"
+    "@react-native-community/cli": "^18.0.0",
+    "@react-native/metro-config": "^0.78.1",
+    "concurrently": "^6.2.0",
+    "react-native-svg-transformer": "^1.5.0"
   }
 }
