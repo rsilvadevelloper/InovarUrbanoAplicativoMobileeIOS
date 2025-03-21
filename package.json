@@ -8,6 +8,8 @@
     "dev": "concurrently \"npm run android\" \"npm run ios\""
   },
   "dependencies": {
+    "expo": "^52.0.39",
+    "express": "^4.21.2",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
     "react-native": "^0.78.1"
@@ -15,7 +17,7 @@
   "devDependencies": {
     "@react-native-community/cli": "^18.0.0",
     "@react-native/metro-config": "^0.78.1",
-    "concurrently": "^6.2.0",
+    "concurrently": "^9.1.2",
     "react-native-svg-transformer": "^1.5.0"
   }
 }
